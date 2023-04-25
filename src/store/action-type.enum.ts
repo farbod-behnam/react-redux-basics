@@ -1,4 +1,5 @@
 export enum ActionType {
     increment = "increment",
-    decrement = "decrement"
+    decrement = "decrement",
+    toggle = "toggle"
 }

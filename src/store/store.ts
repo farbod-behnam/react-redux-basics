@@ -3,21 +3,33 @@ import { ActionType } from "./action-type.enum";
 import { Action } from "./action.model";
 import { State } from "./state.model";
 
-const counterReducer = (state: State = {counter: 0}, action: Action) => {
+const initialState = new State(0, true);
+
+const counterReducer = (state: State = initialState, action: Action): State => {
+
 
     if (action.type === ActionType.increment) {
         return {
-            counter: state.counter + 1
-        }
+            counter: state.counter + 1,
+            showCounter: state.showCounter
+        };
     }
 
     if (action.type === ActionType.decrement) {
         return {
-            counter: state.counter - 1
-        }
+            counter: state.counter - 1,
+            showCounter: state.showCounter
+        };
     }
 
-    return state;
+    if (action.type === ActionType.toggle) {
+        return {
+            counter: state.counter,
+            showCounter: !state.showCounter
+        };
+    }
+
+    return initialState;
 }
 
 const store = createStore(counterReducer);

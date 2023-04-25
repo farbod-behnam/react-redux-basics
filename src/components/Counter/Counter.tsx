@@ -6,6 +6,7 @@ import { ActionType } from '../../store/action-type.enum';
 export default function Counter()  {
 
   const counter = useSelector<State, number>(state => state.counter);
+  const showCounter = useSelector<State, boolean>(state => state.showCounter);
   const dispatch = useDispatch();
 
   const incrementHandler = () => {
@@ -16,12 +17,14 @@ export default function Counter()  {
     dispatch({ type: ActionType.decrement });
   }
 
-  const toggleCounterHandler = () => {};
+  const toggleCounterHandler = () => {
+    dispatch({ type: ActionType.toggle });
+  };
 
   return (
     <main className={classes.counter}>
       <h1>Redux Counter</h1>
-      <div className={classes.value}>{counter}</div>
+      {showCounter && <div className={classes.value}>{counter}</div>}
       <div>
         <button onClick={incrementHandler}>Increment</button>
         <button onClick={decrementHandler}>Decrement</button>
