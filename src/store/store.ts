@@ -22,6 +22,14 @@ const counterReducer = (state: State = initialState, action: Action): State => {
         };
     }
 
+    if (action.type === ActionType.increase && action.value) {
+
+        return {
+            counter: state.counter + action.value,
+            showCounter: state.showCounter
+        };
+    }
+
     if (action.type === ActionType.toggle) {
         return {
             counter: state.counter,

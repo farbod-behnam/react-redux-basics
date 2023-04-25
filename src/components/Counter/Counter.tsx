@@ -17,6 +17,10 @@ export default function Counter()  {
     dispatch({ type: ActionType.decrement });
   }
 
+  const increaseHandler = () => {
+    dispatch({ type: ActionType.increase, value: 10 })
+  }
+
   const toggleCounterHandler = () => {
     dispatch({ type: ActionType.toggle });
   };
@@ -27,6 +31,7 @@ export default function Counter()  {
       {showCounter && <div className={classes.value}>{counter}</div>}
       <div>
         <button onClick={incrementHandler}>Increment</button>
+        <button onClick={increaseHandler}>Increase by 10</button>
         <button onClick={decrementHandler}>Decrement</button>
       </div>
       <button onClick={toggleCounterHandler}>Toggle Counter</button>
