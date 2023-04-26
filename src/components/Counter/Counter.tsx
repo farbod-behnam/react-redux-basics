@@ -2,28 +2,47 @@ import classes from './Counter.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { State } from '../../store/state.model';
 import { ActionType } from '../../store/action-type.enum';
+import { counterActions } from '../../store/store';
 
-export default function Counter()  {
+export default function Counter() {
 
   const counter = useSelector<State, number>(state => state.counter);
   const showCounter = useSelector<State, boolean>(state => state.showCounter);
   const dispatch = useDispatch();
 
   const incrementHandler = () => {
-    dispatch({ type: ActionType.increment });
+    // without slice
+    // dispatch({ type: ActionType.increment });
+
+    // with slice
+    dispatch(counterActions.increment());
   }
 
   const decrementHandler = () => {
-    dispatch({ type: ActionType.decrement });
-  }
+    // without slice
+    // dispatch({ type: ActionType.decrement });
 
-  const increaseHandler = () => {
-    dispatch({ type: ActionType.increase, value: 10 })
+    // with slice
+    dispatch(counterActions.decrement());
   }
 
   const toggleCounterHandler = () => {
-    dispatch({ type: ActionType.toggle });
+    // without slice
+    // dispatch({ type: ActionType.toggle });
+
+    // with slice
+    dispatch(counterActions.toggleCounter());
   };
+
+  const increaseHandler = () => {
+    // without slice
+    // dispatch({ type: ActionType.increase, value: 10 })
+
+    // with slice
+    dispatch(counterActions.increase(10));
+  }
+
+
 
   return (
     <main className={classes.counter}>
