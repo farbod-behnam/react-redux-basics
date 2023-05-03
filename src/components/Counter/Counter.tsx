@@ -1,13 +1,15 @@
 import classes from './Counter.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { State } from '../../store/state.model';
+import { CounterState } from '../../store/counter-state.model';
 import { ActionType } from '../../store/action-type.enum';
-import { counterActions } from '../../store/store';
+import store, { RootState } from '../../store/store';
+import { counterActions } from '../../store/counter-slice';
 
 export default function Counter() {
 
-  const counter = useSelector<State, number>(state => state.counter);
-  const showCounter = useSelector<State, boolean>(state => state.showCounter);
+
+  const counter = useSelector<RootState, number>(state => state.counter.value);
+  const showCounter = useSelector<RootState, boolean>(state => state.counter.showCounter);
   const dispatch = useDispatch();
 
   const incrementHandler = () => {
